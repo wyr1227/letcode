@@ -1021,12 +1021,16 @@ var minSubArrayLen = function (s, nums) {
  */
 var intersect = function (nums1, nums2) {
   const result = []
+  const tmp = nums2
   for (let i = 0; i < nums1.length; i++) {
-    if (nums2.indexOf(nums1[i]) !== -1) result.push(nums1[i])
+    const index = tmp.indexOf(nums1[i])
+    if (index !== -1) {
+      tmp.splice(index, 1)
+      result.push(nums1[i])
+    }
   }
   return result
 };
-console.log(intersect([1, 2, 2, 1], [22]))
 
 /**
  * @param {number[]} A
