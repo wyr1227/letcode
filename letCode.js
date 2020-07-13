@@ -990,5 +990,112 @@ var wordBreak = function (s, wordDict) {
   }
   return isContains[s.length] ? true : false
 }
-console.log(wordBreak('applepenapple', ['apple', 'pen']))
+/*
+ * @param {number} s
+ * @param {number[]} nums
+ * @return {number}
+ * @description 209. 长度最小的子数组
+ */
+var minSubArrayLen = function (s, nums) {
+  if (nums.length <= 0) return 0
+  let [start, end] = [0, 0]
+  let sum = 0
+  let ans = Infinity
+  while (end < nums.length) {
+    sum = sum + nums[end]
+    while (sum >= s) {
+      ans = Math.min(ans, end - start + 1)
+      sum = sum - nums[start]
+      start++
+    }
+    end++
+  }
+  return ans === Infinity ? 0 : ans
+};
+
+/**
+ * @param {number[]} nums1
+ * @param {number[]} nums2
+ * @return {number[]}
+ * @description 350. 两个数组的交集 II
+ */
+var intersect = function (nums1, nums2) {
+  const result = []
+  for (let i = 0; i < nums1.length; i++) {
+    if (nums2.indexOf(nums1[i]) !== -1) result.push(nums1[i])
+  }
+  return result
+};
+console.log(intersect([1, 2, 2, 1], [22]))
+
+/**
+ * @param {number[]} A
+ * @param {number[]} B
+ * @return {number}
+ * @description 718. 最长重复子数组
+ */
+var findLength = function (A, B) {
+  // const dp = Array(A.length)
+  // let max = 0
+  // for (let i = 0; i < A.length; i++) {
+  //   dp[i] = []
+  //   for (let j = 0; j < B.length; j++) {
+  //     if (A[i] >= 100 || B[j] < 0) {
+  //       dp[i][j] = 0
+  //       break
+  //     }
+  //     if (A[i] === B[j]) {
+  //       if (dp[i - 1] && dp[i - 1][j - 1] && dp[i-1][j - 1] !== 0) {
+  //         dp[i][j] = dp[i-1][j - 1] + 1
+  //         max = Math.max(dp[i][j], max)
+  //       } else {
+  //         dp[i][j] = 1
+  //       }
+
+  //     } else {
+  //       dp[i][j] = 0
+  //     }
+  //   }
+  // }
+  // return dp
+
+  var hash = new Array(A.length + 1).fill(0);
+  var max = 0;
+  var al = A.length;
+  var bl = B.length;
+
+  for (var i = 0; i < al; i++) {
+    for (var j = bl - 1; j >= 0; j--) {
+      if (A[i] === B[j]) {
+        hash[j + 1] = hash[j] + 1;
+        max = hash[j + 1] > max ? hash[j + 1] : max;
+      } else {
+        hash[j + 1] = 0;
+      }
+    }
+  }
+
+  return hash;
+};
+
+/**
+ * @param {number} shorter
+ * @param {number} longer
+ * @param {number} k
+ * @return {number[]}
+ * @description 面试题 16.11. 跳水板
+ */
+var divingBoard = function (shorter, longer, k) {
+  if (k === 0) return [0];
+  if (shorter === longer) return [shorter * k]
+
+  const len = k + 1
+  const arr = Array(len).fill(longer * k)
+
+  for (let i = 0; i < len; i++) {
+    arr[i] = arr[i] - ((k - i) * (longer - shorter))
+  }
+  return arr
+
+};
 
