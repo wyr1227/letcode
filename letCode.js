@@ -9,10 +9,11 @@ var twoSum = function(nums, target) {
   nums.map(item => (target - item)).forEach((item, index) => {
     if (nums.indexOf(item, index + 1) !== -1 && arr.length === 0) {
       arr.push(index,nums.indexOf(item, index + 1))
-    }
+    } 
   })
   return arr
 }
+console.log(twoSum([2, 7, 11, 15], 9))
 
 /**
  * Definition for singly-linked list.
@@ -1065,5 +1066,3 @@ var divingBoard = function(shorter, longer, k) {
   return arr
 
 };
-
-console.log(divingBoard(1,2,3))
