@@ -4,12 +4,12 @@
  * @param {number} target
  * @return {number[]}
  */
-var twoSum = function(nums, target) {
+var twoSum = function (nums, target) {
   const arr = []
   nums.map(item => (target - item)).forEach((item, index) => {
     if (nums.indexOf(item, index + 1) !== -1 && arr.length === 0) {
-      arr.push(index,nums.indexOf(item, index + 1))
-    } 
+      arr.push(index, nums.indexOf(item, index + 1))
+    }
   })
   return arr
 }
@@ -32,7 +32,7 @@ function ListNode(val) {
   this.val = val;
   this.next = null;
 }
-var addTwoNumbers = function(l1, l2) {
+var addTwoNumbers = function (l1, l2) {
   let node = new ListNode(0)
   let result = node
   while (l1 || l2) {
@@ -58,12 +58,12 @@ var addTwoNumbers = function(l1, l2) {
  * @param {string} s
  * @return {number}
  */
-var lengthOfLongestSubstring = function(s) {
+var lengthOfLongestSubstring = function (s) {
   let arr = ''
   let i = 0
   let max = 0
   let len = s.length
-  while(i < len) {
+  while (i < len) {
     const index = arr.indexOf(s[i])
     if (index === -1) {
       arr += s[i]
@@ -83,20 +83,20 @@ var lengthOfLongestSubstring = function(s) {
  * @param {number[]} nums2
  * @return {number}
  */
-var findMedianSortedArrays = function(nums1, nums2) {
+var findMedianSortedArrays = function (nums1, nums2) {
   let m = nums1.length
   let n = nums2.length
   if (m > n) {
     let temp = nums1
     nums1 = nums2
-    nums2 = temp 
+    nums2 = temp
     let len = m
     m = n
     n = len
   }
   let iMin = 0
   let iMax = m
-  let half = (n + m + 1) /2
+  let half = (n + m + 1) / 2
   while (iMax >= iMin) {
     let i = Math.floor((iMin + iMax) / 2)
     let j = Math.floor(half - i)
@@ -107,10 +107,10 @@ var findMedianSortedArrays = function(nums1, nums2) {
     } else {
       let maxLeft = 0
       if (i === 0) { maxLeft = nums2[j - 1] }
-      else if (j == 0)  { maxLeft = nums1[i - 1] }
-      else { maxLeft = Math.max(nums1[i-1], nums2[j-1]) }
-      if ( (m + n) % 2 === 1 ) {
-        return maxLeft; 
+      else if (j == 0) { maxLeft = nums1[i - 1] }
+      else { maxLeft = Math.max(nums1[i - 1], nums2[j - 1]) }
+      if ((m + n) % 2 === 1) {
+        return maxLeft;
       }
       let minRight = 0;
       if (i == m) { minRight = nums2[j]; }
@@ -126,7 +126,7 @@ var findMedianSortedArrays = function(nums1, nums2) {
  * @param {string} s
  * @return {string}
  */
-var longestPalindrome = function(s) {
+var longestPalindrome = function (s) {
   const len = s.length
   const arr = [[true]]
   let max = 0
@@ -137,15 +137,15 @@ var longestPalindrome = function(s) {
   if (s.length === 0) {
     return s
   }
-  for (let i = 1; i < len ; i++) {
+  for (let i = 1; i < len; i++) {
     arr[i] = [true]
     for (let j = 0; j <= i; j++) {
       if (i === j) {
-        arr[i][j] =true
-      } else if (s[i] === s[j] && (arr[i-1][j+1] || arr[i-1][j+1] == null)) {
+        arr[i][j] = true
+      } else if (s[i] === s[j] && (arr[i - 1][j + 1] || arr[i - 1][j + 1] == null)) {
         arr[i][j] = true
         max = Math.max(max, i - j)
-        if (max === i- j) {
+        if (max === i - j) {
           obj.start = j
           obj.end = max + 1
         }
@@ -162,8 +162,8 @@ var longestPalindromeTwo = function (s) {
   let max = s[0]
   if (s.length <= 1) return s
   for (let i = 0; i < len; i++) {
-    for (let j = i +1; j<len; j++) {
-      const str = s.substr(i,j-i+1)
+    for (let j = i + 1; j < len; j++) {
+      const str = s.substr(i, j - i + 1)
       const restr = str.split('').reverse().join('')
       if (str === restr && str.length > max.length) {
         max = str
@@ -172,7 +172,7 @@ var longestPalindromeTwo = function (s) {
   }
   return max
 }
-var longestPalindromeThree =function(s) {
+var longestPalindromeThree = function (s) {
   if (s.length <= 1) return s
   let start = 0, end = 0
   for (let i = 0, len = s.length; i < len; i++) {
@@ -198,7 +198,7 @@ var longestPalindromeThree =function(s) {
  * @param {number} numRows
  * @return {string}
  */
-var convert = function(s, numRows) {
+var convert = function (s, numRows) {
   if (numRows < 2 || s.length < 2) return s
   const arr = []
   let nowLen = 0
@@ -235,7 +235,7 @@ var convert = function(s, numRows) {
   let sa = arr.map(item => item.join('')).join('')
   return sa
 };
-var convertOne = function(s, numRows) {
+var convertOne = function (s, numRows) {
   if (numRows < 2 || s.length < 2) return s
   let arr = []
   let curRow = 0
@@ -256,7 +256,7 @@ var convertOne = function(s, numRows) {
  * @return {number}
  * @description 7. 整数反转
  */
-var reverse = function(x) {
+var reverse = function (x) {
   let abs = false
   const arr = []
   if (x >= 0) {
@@ -277,10 +277,10 @@ var reverse = function(x) {
   if (abs) {
     number = - number
   }
-  if (number > Math.pow(2,32)) {
+  if (number > Math.pow(2, 32)) {
     return 0
   }
-  if (number < -Math.pow(2,32)) {
+  if (number < -Math.pow(2, 32)) {
     return 0
   }
   return number
@@ -291,7 +291,7 @@ var reverse = function(x) {
  * @return {number}
  * @description 8.字符串转换整数 (atoi) 
  */
-var myAtoi = function(str) {
+var myAtoi = function (str) {
   const strs = str.trim()
   const arr = strs.match(/^[+-]?\d*/g)
   if (arr) {
@@ -308,12 +308,12 @@ var myAtoi = function(str) {
  * @return {boolean}
  * @description 9. 回文数
  */
-var isPalindrome = function(x) {
+var isPalindrome = function (x) {
   if (x < 0 || (x % 10 === 0 && x !== 0)) return false
   let save = 0;
   while (x > save) {
     save = save * 10 + x % 10
-   x = Math.floor(x / 10)
+    x = Math.floor(x / 10)
   }
   return x === save || x === Math.floor(save / 10)
 };
@@ -324,12 +324,12 @@ var isPalindrome = function(x) {
  * @return {boolean}
  * @description 10. 正则表达式匹配
  */
-var isMatch = function(s, p) {
+var isMatch = function (s, p) {
   if (p == '') return s == ''
 
   const firstMatch = (s !== '' && (s[0] === p[0] || p[0] === '.'))
   if (p.length > 1 && p[1] === '*') {
-    return (isMatch(s, p.substr(2)) || (firstMatch && isMatch(s.substr(1), p))) 
+    return (isMatch(s, p.substr(2)) || (firstMatch && isMatch(s.substr(1), p)))
   } else {
     return firstMatch && isMatch(s.substr(1), p.substr(1))
   }
@@ -340,11 +340,11 @@ var isMatch = function(s, p) {
  * @return {number}
  * @description 11. 盛最多水的容器
  */
-var maxArea = function(height) {
+var maxArea = function (height) {
   const len = height.length - 1;
   let maxArea = 0
   let l = 0, r = len
-  while(l >= r) {
+  while (l >= r) {
     maxArea = Math.max(maxArea, Math.min(height[l], height[r]) * (r - l - 1))
     if (height[l] > height[r]) {
       r--
@@ -360,12 +360,12 @@ var maxArea = function(height) {
  * @return {string}
  * @description 12. 整数转罗马数字
  */
-var intToRoman = function(num) {
+var intToRoman = function (num) {
   const fu = ["M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"]
   const nums = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]
   let index = 0
   let res = ''
-  while(index < fu.length) {
+  while (index < fu.length) {
     while (num >= nums[index]) {
       res += fu[index]
       num -= nums[index]
@@ -380,19 +380,19 @@ var intToRoman = function(num) {
  * @return {number}
  * @description 13. 罗马数字转整数
  */
-var romanToInt = function(s) {
+var romanToInt = function (s) {
   const fu = ["M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"]
   const nums = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]
   let index = 0
   let res = 0
   while (index < fu.length) {
     if (fu[index].length === 2) {
-      while(fu[index] === (s[0] + s[1])) {
+      while (fu[index] === (s[0] + s[1])) {
         res += nums[index]
         s = s.substr(2)
       }
     } else {
-      while(fu[index] === s[0]) {
+      while (fu[index] === s[0]) {
         res += nums[index]
         s = s.substr(1)
       }
@@ -406,10 +406,10 @@ var romanToInt = function(s) {
  * @return {string}
  * @description 14. 最长公共前缀
  */
-var longestCommonPrefix = function(strs) {
+var longestCommonPrefix = function (strs) {
   if (strs.length === 0) return ''
   let first = strs[0]
-  for (let i = 1; i< strs.length; i++) {
+  for (let i = 1; i < strs.length; i++) {
     while (strs[i].indexOf(first) !== 0) {
       first = first.substr(0, first.length - 1);
       if (first === '') return ''
@@ -443,32 +443,32 @@ var longestCommonPrefix = function(strs) {
  * @return {number[][]}
  * @description 15. 三数之和
  */
-var threeSum = function(nums) {
+var threeSum = function (nums) {
   const len = nums.length
   if (len < 3) return [];
   const arr = []
   nums.sort((a, b) => a - b)
   if (nums[0] <= 0 && nums[len - 1] >= 0) {
     for (let i = 0; i < len; i++) {
-      if(i > 0 && nums[i] == nums[i-1]) continue;
+      if (i > 0 && nums[i] == nums[i - 1]) continue;
       if (nums[i] > 0) return arr
       let firstIndex = i + 1
       let lastIndex = len - 1
-    
+
       while (lastIndex > firstIndex) {
         const result = nums[lastIndex] + nums[firstIndex] + nums[i]
         if (result === 0) {
-          arr.push([nums[lastIndex] , nums[firstIndex] , nums[i]])
-          while(firstIndex < lastIndex && nums[lastIndex] === nums[lastIndex-1]) lastIndex--
-          while(firstIndex < lastIndex && nums[firstIndex] === nums[firstIndex +1]) firstIndex++
+          arr.push([nums[lastIndex], nums[firstIndex], nums[i]])
+          while (firstIndex < lastIndex && nums[lastIndex] === nums[lastIndex - 1]) lastIndex--
+          while (firstIndex < lastIndex && nums[firstIndex] === nums[firstIndex + 1]) firstIndex++
           firstIndex++;
           lastIndex--;
         }
-        if (result > 0)  {
+        if (result > 0) {
           lastIndex--
         }
         if (result < 0) {
-          firstIndex++ 
+          firstIndex++
         }
       }
     }
@@ -482,14 +482,14 @@ var threeSum = function(nums) {
  * @return {number}
  * @description 16. 最接近的三数之和
  */
-var threeSumClosest = function(nums, target) {
+var threeSumClosest = function (nums, target) {
   let len = nums.length;
   let res;
   nums = nums.sort((a, b) => a - b);
   for (let i = 0; i < len; i++) {
     let L = i + 1
     let R = len - 1
-    
+
     while (R > L) {
       let result = nums[i] + nums[L] + nums[R]
       if (Math.abs(target - result) === 0) {
@@ -515,16 +515,16 @@ var threeSumClosest = function(nums, target) {
  * @return {string[]}
  * @description 17. 电话号码的字母组合
  */
-var letterCombinations = function(digits) {
+var letterCombinations = function (digits) {
   if (digits === '') return []
   const key = {
-    2: 'abc', 3: 'def', 4: 'ghi', 5: 'jkl',6: 'mno', 7: 'qprs', 8: 'tuv', 9: 'wxyz'
+    2: 'abc', 3: 'def', 4: 'ghi', 5: 'jkl', 6: 'mno', 7: 'qprs', 8: 'tuv', 9: 'wxyz'
   }
   let result = []
   function back(arr, index) {
-    const now = digits.substr(index,1)
+    const now = digits.substr(index, 1)
     if (now === '') return result.push(arr)
-    for(let i = 0; i< key[now].length; i++) {
+    for (let i = 0; i < key[now].length; i++) {
       back(arr + key[now][i], index + 1)
     }
   }
@@ -539,32 +539,32 @@ var letterCombinations = function(digits) {
  * @return {number[][]}
  * @description 18. 四数之和
  */
-var fourSum = function(nums, target) {
+var fourSum = function (nums, target) {
   const len = nums.length
   if (len < 3) return [];
   const arr = []
   nums.sort((a, b) => a - b)
   for (let i = 0; i < len; i++) {
-    for( let j = i + 1; j < len; j++) {
+    for (let j = i + 1; j < len; j++) {
       let firstIndex = j + 1
       let lastIndex = len - 1
-    
+
       while (lastIndex > firstIndex) {
         const result = nums[lastIndex] + nums[firstIndex] + nums[i] + nums[j]
         if (result === target) {
-          arr.push([nums[lastIndex] , nums[firstIndex] , nums[i], nums[j]])
-          while(nums[j] === nums[j+1]) j++
-          while(nums[i] === nums[i+1]) i++
-          while(firstIndex < lastIndex && nums[lastIndex] === nums[lastIndex-1]) lastIndex--
-          while(firstIndex < lastIndex && nums[firstIndex] === nums[firstIndex +1]) firstIndex++
+          arr.push([nums[lastIndex], nums[firstIndex], nums[i], nums[j]])
+          while (nums[j] === nums[j + 1]) j++
+          while (nums[i] === nums[i + 1]) i++
+          while (firstIndex < lastIndex && nums[lastIndex] === nums[lastIndex - 1]) lastIndex--
+          while (firstIndex < lastIndex && nums[firstIndex] === nums[firstIndex + 1]) firstIndex++
           firstIndex++;
           lastIndex--;
         }
-        if (result > target)  {
+        if (result > target) {
           lastIndex--
         }
         if (result < target) {
-          firstIndex++ 
+          firstIndex++
         }
       }
     }
@@ -577,11 +577,11 @@ var fourSum = function(nums, target) {
  * @return {boolean}
  * @description 20. 有效的括号
  */
-var isValid = function(s) {
+var isValid = function (s) {
   // let len = s.length
   // if (s === '') return true
   // if (len < 1 || (len % 2 !== 0)) return false
- 
+
   // let reg = /(\(\)|\[\]|{})/g
   // let  cache = s.replace(reg, '')
   // while (cache.length !== len) {
@@ -593,7 +593,7 @@ var isValid = function(s) {
   let len = s.length
   if (s === '') return true
   if (len < 1 || (len % 2 !== 0)) return false
- 
+
   const obj = {
     '(': ')',
     '[': ']',
@@ -604,7 +604,7 @@ var isValid = function(s) {
     if (obj[s[i]]) {
       arr.push(obj[s[i]])
     } else {
-      if (arr.pop() !== s[i]){
+      if (arr.pop() !== s[i]) {
         return false
       }
     }
@@ -618,7 +618,7 @@ var isValid = function(s) {
  * @return {string[]}
  * @description 22. 括号生成
  */
-var generateParenthesis = function(n) {
+var generateParenthesis = function (n) {
   if (n === 0) return []
   const ar = []
   kuo(ar, '', 0, 0, n)
@@ -641,11 +641,11 @@ var generateParenthesis = function(n) {
  * @return {number}
  * @description 26. 删除排序数组中的重复项
  */
-var removeDuplicates = function(nums) {
+var removeDuplicates = function (nums) {
   if (nums.length <= 1) return nums;
   let firstIndex = 0;
   let lastIndex = nums.length - 1;
-  while(firstIndex < lastIndex) {
+  while (firstIndex < lastIndex) {
     if (nums[firstIndex] != null && nums[firstIndex] === nums[firstIndex + 1]) {
       nums.splice(firstIndex, 1)
       firstIndex--
@@ -666,18 +666,18 @@ var removeDuplicates = function(nums) {
  * @return {number}
  * @deescription 27. 移除元素
  */
-var removeElement = function(nums, val) {
+var removeElement = function (nums, val) {
   if (nums.length < 1) return 0
   let firstIndex = 0;
   let lastIndex = nums.length - 1;
-  while(firstIndex <= lastIndex) {
+  while (firstIndex <= lastIndex) {
     if (nums[firstIndex] === val) {
       nums.splice(firstIndex, 1);
       lastIndex--
       firstIndex--
     }
     if (nums[lastIndex] === val) {
-      nums.splice(lastIndex, 1) 
+      nums.splice(lastIndex, 1)
     }
     firstIndex++
     lastIndex--
@@ -691,10 +691,10 @@ var removeElement = function(nums, val) {
  * @return {number}
  * @description 28. 实现 strStr()
  */
-var strStr = function(haystack, needle) {
+var strStr = function (haystack, needle) {
   if (needle === '' || haystack === needle) return 0;
   let len = haystack.length;
-  
+
   for (let i = 0; i < len; i++) {
     if (haystack.substring(i, i + +needle.length) === needle) return i
   }
@@ -707,8 +707,8 @@ var strStr = function(haystack, needle) {
  * @return {number}
  * @description 29. 两数相除
  */
-var divide = function(dividend, divisor) {
-    
+var divide = function (dividend, divisor) {
+
 };
 
 /**
@@ -716,8 +716,8 @@ var divide = function(dividend, divisor) {
  * @return {number}
  * @description 45. 跳跃游戏 II
  */
-var jump = function(nums) {
-  if (nums.length <= 1 ) return 0
+var jump = function (nums) {
+  if (nums.length <= 1) return 0
 
   const len = nums.length - 1;
   let max = 0;
@@ -738,13 +738,13 @@ var jump = function(nums) {
  * @return {number[][]}
  * @description 46. 全排列
  */
-var permute = function(nums) {
+var permute = function (nums) {
   if (nums.length < 1) return nums;
   const len = nums.length;
   const result = [];
- 
-  for(let i = 0; i < len; i++) {
-    brea(nums, [nums[i]]) 
+
+  for (let i = 0; i < len; i++) {
+    brea(nums, [nums[i]])
   }
   function brea(arr, alArr) {
     if (alArr.length === len) {
@@ -755,7 +755,7 @@ var permute = function(nums) {
       if (alArr.indexOf(nums[i]) === -1) {
         let copyAl = [...alArr]
         copyAl.push(nums[i])
-        brea(arr,copyAl)
+        brea(arr, copyAl)
       }
     }
   }
@@ -767,7 +767,7 @@ var permute = function(nums) {
  * @return {number}
  * @description 53. 最大子序和
  */
-var maxSubArray = function(nums) {
+var maxSubArray = function (nums) {
   if (nums.length === 1) {
     return nums[0];
   }
@@ -775,7 +775,7 @@ var maxSubArray = function(nums) {
   let max = nums[0]
   dp[0] = nums[0]
   for (let i = 1, j = nums.length; i < j; i++) {
-    dp[i] = Math.max(nums[i] + dp[i -1], nums[i])
+    dp[i] = Math.max(nums[i] + dp[i - 1], nums[i])
   }
   return dp
   // let sum = nums[0]
@@ -794,7 +794,7 @@ var maxSubArray = function(nums) {
  * @return {boolean}
  * @description 55. 跳跃游戏
  */
-var canJump = function(nums) {
+var canJump = function (nums) {
   if (nums.length < 2) return true;
   if (nums.indexOf(0) === -1) return true;
   let max = 0;
@@ -817,7 +817,7 @@ var canJump = function(nums) {
  * @return {number[][]}
  * @description 56. 合并区间
  */
-var merge = function(intervals) {
+var merge = function (intervals) {
   const arr = []
   if (intervals.length === 0) return arr
 
@@ -844,17 +844,17 @@ var merge = function(intervals) {
  * @return {number}
  * @description 62. 不同路径
  */
-var uniquePaths = function(m, n) {
+var uniquePaths = function (m, n) {
   // if (m <= 1 || n <= 1) return 1
 
   const cur = new Array(n)
   cur.fill(1)
-  for (let i = 1; i < n;i++){
-    for (let j = 1; j < m; j++){
-      cur[j] += cur[j-1] ;
+  for (let i = 1; i < n; i++) {
+    for (let j = 1; j < m; j++) {
+      cur[j] += cur[j - 1];
     }
   }
-  return cur[n-1];
+  return cur[n - 1];
 };
 
 /**
@@ -862,7 +862,7 @@ var uniquePaths = function(m, n) {
  * @return {number[]}
  * @description 54. 螺旋矩阵
  */
-var spiralOrder = function(matrix) {
+var spiralOrder = function (matrix) {
   if (!matrix[0]) return [];
 
   let top = 0;
@@ -870,7 +870,7 @@ var spiralOrder = function(matrix) {
   let right = matrix[0].length
   let bottom = matrix.length
   let result = [];
-  
+
   while (result.length === matrix[0].length * matrix.length) {
 
   }
@@ -881,9 +881,9 @@ var spiralOrder = function(matrix) {
  * @return {number}
  * @description 64. 最小路径和
  */
-var minPathSum = function(grid) {
+var minPathSum = function (grid) {
   const db = [];
-  let count = grid.length -1 + grid[0].length - 1
+  let count = grid.length - 1 + grid[0].length - 1
   while (count >= 0) {
     db.push([])
     count--
@@ -895,7 +895,7 @@ var minPathSum = function(grid) {
         db[i][j] = db[i][j - 1] + grid[i][j]
       } else if (i !== 0 && j === 0) {
         db[i][j] = (db[i - 1][j] + grid[i][j])
-      } else if (i >= 1 && j >= 1){
+      } else if (i >= 1 && j >= 1) {
         db[i][j] = Math.min(db[i - 1][j] + grid[i][j], db[i][j - 1] + grid[i][j])
       }
     }
@@ -909,7 +909,7 @@ var minPathSum = function(grid) {
  * @return {string}
  * @description 67. 二进制求和
  */
-var addBinary = function(a, b) {
+var addBinary = function (a, b) {
   if (b === '0') return a
   let c = (a.length > b.length ? a : b)
   let d = (c === a ? b : a).split('').reverse();
@@ -952,14 +952,14 @@ var addBinary = function(a, b) {
  * @return {number}
  * @description 134. 加油站
  */
-var canCompleteCircuit = function(gas, cost) {
+var canCompleteCircuit = function (gas, cost) {
   if (gas.length === 0) return 0;
 
   let sum = 0;
   let maxIndex = 0;
   let maxSum = 0;
 
-  for (let i = 0; i <gas.length; i++) {
+  for (let i = 0; i < gas.length; i++) {
     sum += gas[i] - cost[i];
     maxSum += gas[i] - cost[i]
     if (maxSum < 0) {
@@ -974,12 +974,30 @@ var canCompleteCircuit = function(gas, cost) {
 };
 
 /**
+ * @param {string} s
+ * @param {string[]} wordDict
+ * @return {boolean}
+ * @description 139. 单词拆分
+ */
+var wordBreak = function (s, wordDict) {
+  const isContains = [true]
+  for (let i = 1; i <= s.length; i++) {
+    for (let j = 0; j < i; j++) {
+      if (isContains[j] && wordDict.indexOf(s.substr(j, i - j)) !== -1) {
+        isContains[i] = true
+        break
+      }
+    }
+  }
+  return isContains[s.length] ? true : false
+}
+/*
  * @param {number} s
  * @param {number[]} nums
  * @return {number}
  * @description 209. 长度最小的子数组
  */
-var minSubArrayLen = function(s, nums) {
+var minSubArrayLen = function (s, nums) {
   if (nums.length <= 0) return 0
   let [start, end] = [0, 0]
   let sum = 0
@@ -997,12 +1015,31 @@ var minSubArrayLen = function(s, nums) {
 };
 
 /**
+ * @param {number[]} nums1
+ * @param {number[]} nums2
+ * @return {number[]}
+ * @description 350. 两个数组的交集 II
+ */
+var intersect = function (nums1, nums2) {
+  const result = []
+  const tmp = nums2
+  for (let i = 0; i < nums1.length; i++) {
+    const index = tmp.indexOf(nums1[i])
+    if (index !== -1) {
+      tmp.splice(index, 1)
+      result.push(nums1[i])
+    }
+  }
+  return result
+};
+
+/**
  * @param {number[]} A
  * @param {number[]} B
  * @return {number}
  * @description 718. 最长重复子数组
  */
-var findLength = function(A, B) {
+var findLength = function (A, B) {
   // const dp = Array(A.length)
   // let max = 0
   // for (let i = 0; i < A.length; i++) {
@@ -1019,7 +1056,7 @@ var findLength = function(A, B) {
   //       } else {
   //         dp[i][j] = 1
   //       }
-        
+
   //     } else {
   //       dp[i][j] = 0
   //     }
@@ -1028,22 +1065,22 @@ var findLength = function(A, B) {
   // return dp
 
   var hash = new Array(A.length + 1).fill(0);
-    var max = 0;
-    var al = A.length;
-    var bl = B.length;
+  var max = 0;
+  var al = A.length;
+  var bl = B.length;
 
-    for(var i = 0; i < al; i++) {
-        for (var j = bl - 1; j >= 0; j--) {
-            if (A[i] === B[j]) {
-                hash[j + 1] = hash[j] + 1;
-                max = hash[j + 1] > max ? hash[j + 1] : max;
-            } else {
-                hash[j + 1] = 0;
-            }
-        }  
+  for (var i = 0; i < al; i++) {
+    for (var j = bl - 1; j >= 0; j--) {
+      if (A[i] === B[j]) {
+        hash[j + 1] = hash[j] + 1;
+        max = hash[j + 1] > max ? hash[j + 1] : max;
+      } else {
+        hash[j + 1] = 0;
+      }
     }
+  }
 
-    return hash;
+  return hash;
 };
 
 /**
@@ -1053,13 +1090,13 @@ var findLength = function(A, B) {
  * @return {number[]}
  * @description 面试题 16.11. 跳水板
  */
-var divingBoard = function(shorter, longer, k) {
+var divingBoard = function (shorter, longer, k) {
   if (k === 0) return [0];
   if (shorter === longer) return [shorter * k]
 
   const len = k + 1
   const arr = Array(len).fill(longer * k)
-  
+
   for (let i = 0; i < len; i++) {
     arr[i] = arr[i] - ((k - i) * (longer - shorter))
   }
